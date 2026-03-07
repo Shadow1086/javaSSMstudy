@@ -32,4 +32,16 @@ public class JavaBeanTest {
 		classPathXmlApplicationContext.close();
 
 	}
+
+	@Test
+	public void javaBean2Test(){
+		//1. 创建ioc容器
+		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("spring-05.xml");
+		JavaBean2 bean = (JavaBean2) classPathXmlApplicationContext.getBean("javaBean2", JavaBean2.class);
+		JavaBean2 bean1 = (JavaBean2) classPathXmlApplicationContext.getBean(JavaBean2.class);
+
+		System.out.println(bean);
+		System.out.println(bean1);
+		classPathXmlApplicationContext.close();
+	}
 }

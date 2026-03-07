@@ -10,5 +10,6 @@
 	-->
 	<bean id="javaBean" class="com.study.ioc_05.JavaBean" init-method="init" destroy-method="clear"/>
 
-
+	<!-- 声明一个组件信息，默认就是单例模式，一个<bean标签，一个beanDefinition  组件对象	-->
+	<bean id="javaBean2" class="com.study.ioc_05.JavaBean2" scope="prototype"/>
 </beans>
