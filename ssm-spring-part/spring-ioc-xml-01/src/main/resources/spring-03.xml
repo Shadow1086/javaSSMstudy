@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="movieFinder" class="com.study.ioc_03.MovieFinder"/>
+
+	<bean id="simpleMovieLister" class="com.study.ioc_03.SimpleMovieLister">
+		<!--        setter方法注入对象
+				name = 属性名 seeter方法的去掉set并且首字母小写的值
+					setMovieFinder -> movieFinder
+				ref / value 二选一：value = "直接属性值" ref = "其他bean的ID"
+			-->
+		<property name="movieFinder" ref="movieFinder"/>
+		<property name="movieName" value="消失的她"/>
+	</bean>
+
+</beans>

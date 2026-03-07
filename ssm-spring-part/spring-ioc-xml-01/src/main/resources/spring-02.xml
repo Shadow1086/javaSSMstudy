@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--	应用和被引用的组件，必须全部在ioc容器中-->
+	<!--	1. 单个构造参数注入-->
+	<!--	spring ioc 容器是一个高级容器，内不会有缓存动作，1.先创建对象[ioc],2.在进行属性赋值[di]-->
+	<bean id="userDao" class="com.study.ioc_02.UserDao"/>
+	<bean id="userService" class="com.study.ioc_02.UserService">
+		<!--	标签内部制定构造参数传值
+					<constructor-arg 构造参数传值的di配置
+						value = 直接属性值 String name = "张三" int age = 18
+						ref = 引用其他的bean,其他bean的id值
+		-->
+		<constructor-arg ref="userDao"/>
+	</bean>
+
+	<!--	2. 多个构造参数的注入-->
+	<bean id="userService1" class="com.study.ioc_02.UserService">
+		<!--	    方式一：构造参数的顺序填写值		-->
+		<constructor-arg value="18"/>
+		<constructor-arg value="二狗子"/>
+		<constructor-arg value="userDao"/>
+	</bean>
+	<bean id="userService2" class="com.study.ioc_02.UserService">
+		<!--	    方式二：构造参数的名称填写，不用考虑顺序	[推荐]	-->
+		<constructor-arg name="name" value="二狗子"/>
+		<constructor-arg name="age" value="18"/>
+		<constructor-arg name="userDao" value="userDao"/>
+	</bean>
+	<bean id="userService3" class="com.study.ioc_02.UserService">
+		<!--	    方式一：构造参数的下角标填写，不用考虑顺序	-->
+		<constructor-arg index="1" value="二狗子"/>
+		<constructor-arg index="0" value="18"/>
+		<constructor-arg index="2" value="userDao"/>
+	</bean>
+</beans>
