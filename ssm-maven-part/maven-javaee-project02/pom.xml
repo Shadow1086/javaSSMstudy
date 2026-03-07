@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.study</groupId>
+	<artifactId>maven-javaee-project02</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+
+<!--		相当于声明一个变量，声明完变量以后，可以在其他的位置进行引用${jackson.version}-->
+		<jackson.version>2.18.2</jackson.version>
+
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+<!--
+	dependencies - 项目依赖信息的集合
+		dependency - 每个依赖项
+			gav -  以来的信息，就是其他maven的工程[jar]
+-->
+	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-core</artifactId>-->
+<!--			<version>${jackson.version}</version>-->
+<!--		</dependency>-->
+	</dependencies>
+</project>
