@@ -1,6 +1,7 @@
 package com.practice.jdbc;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.practice.controller.StudentController;
 import com.practice.model.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -111,5 +112,16 @@ public class JdbcTemplateTest {
 		//TODO:BeanPropertyRowMapper帮助我们自动映射列和属性值,要求：列名和属性名一致，如果不一致就起别名
 		List<Student> stuList = jdbcTemplate.query(sqlAll,new BeanPropertyRowMapper<>(Student.class));
 		System.out.println("studentList = "+stuList);
+	}
+
+	/**
+	* 三层架构测试
+	*/
+	@Test
+	public void testQueryAll(){
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("practice.xml");
+		StudentController studentController = applicationContext.getBean(StudentController.class);
+		studentController.findAll();
+		applicationContext.close();
 	}
 }
