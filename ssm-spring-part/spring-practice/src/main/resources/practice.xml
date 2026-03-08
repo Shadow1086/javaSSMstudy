@@ -8,11 +8,12 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!--读取外部配置文件 .properties =>value="${}	需要引入：xmlns:context="http://www.springframework.org/schema/context"命名空间
+	<!--读取外部配置文件 .properties =>value="${}
+		需要引入：xmlns:context="http://www.springframework.org/schema/context"命名空间
 		<context:property-placeholder location="classpath:jdbc.properties,classpath:... , ..."/>
 	-->
-<!--	<context:property-placeholder location="classpath:jdbc.properties"/>-->
-<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!--	<context:property-placeholder location="classpath:jdbc.properties"/>-->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url" value="${practice.url}"/>
 		<property name="driverClassName" value="${practice.driver}"/>
@@ -20,11 +21,21 @@
 		<property name="password" value="${practice.password}"/>
 	</bean>
 
+	<!--	jdbcTemplate  -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
-
-	<bean id="student" class="com.practice.model.Student" scope="prototype"/>
-
+	<!--	dao配置 di jdbcTemplate-->
+	<bean id="dao" class="com.practice.dao.StudentDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	<!--	service配置di dao-->
+	<bean id="service" class="com.practice.service.StudentServiceImpl">
+		<property name="dao" ref="dao"/>
+	</bean>
+	<!--	controller 配置di service-->
+	<bean id="controller" class="com.practice.controller.StudentController">
+		<property name="service" ref="service"/>
+	</bean>
 </beans>

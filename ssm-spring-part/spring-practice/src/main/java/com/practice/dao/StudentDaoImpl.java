@@ -25,7 +25,7 @@ public class StudentDaoImpl implements StudentDao{
 	/**
 	* 注入JdbcTemplate对象
 	*/
-	public static void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		StudentDaoImpl.jdbcTemplate = jdbcTemplate;
 	}
 
@@ -107,7 +107,7 @@ public class StudentDaoImpl implements StudentDao{
 	@Override
 	public List<Student> findAll() {
 		String sqlFindAll = """
-				select * from students
+				select id,name,gender,age,class as classes from students
 				""";
 		return jdbcTemplate.query(sqlFindAll, new BeanPropertyRowMapper<>(Student.class));
 	}
