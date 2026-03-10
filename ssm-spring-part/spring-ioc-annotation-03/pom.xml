@@ -12,6 +12,27 @@
 	<groupId>com.study</groupId>
 	<artifactId>spring-ioc-annotation-03</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.2.27</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>9.5.0</version>
+		</dependency>
+
+		<!--	spring-jdbc	-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>7.0.3</version>
+		</dependency>
+	</dependencies>
+
 	<properties>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>

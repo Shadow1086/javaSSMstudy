@@ -6,6 +6,7 @@ import com.study.ioc_01.XxxDao;
 import com.study.ioc_01.XxxService;
 import com.study.ioc_02.JavaBean;
 import com.study.ioc_03.UserController;
+import com.study.practice.controller.StudentController;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -66,6 +67,15 @@ public class SpringIocTest01 {
 
 		//优化点：@Autowired(required=true) + @Qualifier(value="") = @Resource(name="")
 
+		applicationContext.close();
+	}
+	@Test
+	public void testPractice(){
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("practice.xml");
+
+		StudentController controller = applicationContext.getBean("studentController", StudentController.class);
+
+		controller.printinfo();
 		applicationContext.close();
 	}
 }

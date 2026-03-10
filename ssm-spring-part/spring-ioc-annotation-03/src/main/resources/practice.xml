@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.study.practice"/>
+
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<!--	Druid连接池    -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="username" value="${practice.username}"/>
+		<property name="password" value="${practice.password}"/>
+		<property name="url" value="${practice.url}"/>
+		<property name="driverClassName" value="${practice.driver}"/>
+	</bean>
+
+	<!--	JdbcTemplate    -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>
