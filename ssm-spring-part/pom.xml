@@ -21,6 +21,13 @@
 			<artifactId>spring-context</artifactId>
 			<version>7.0.3</version>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+			<version>3.0.0</version>
+			<scope>compile</scope>
+		</dependency>
 <!--		Junit5 依赖-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

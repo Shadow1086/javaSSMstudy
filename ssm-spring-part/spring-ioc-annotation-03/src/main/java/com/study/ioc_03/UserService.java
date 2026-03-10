@@ -7,5 +7,7 @@ package com.study.ioc_03;
  * {@code @Author} Liang-ht
  * {@code @Create} 2025/9/27 14:19
  * {@code @Version} 1.0
- */public interface UserService {
+ */
+public interface UserService {
+	public String show();
 }
