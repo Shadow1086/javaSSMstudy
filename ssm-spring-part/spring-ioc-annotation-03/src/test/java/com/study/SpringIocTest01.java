@@ -59,5 +59,13 @@ public class SpringIocTest01 {
 		// 佛系装配：可以没有，值==null boolean required() default false;就是开启佛系了。不推荐使用佛系装配，装配的数据后期都会有调用，后面会出现空指针
 		// @Autowired(required=false)
 
+
+		// 场景三：同一类型有多个对应组件，@Autowired也会报错，无法选择。比如Service接口有两个实现类
+			// 解决一：成员属性名指定 @Autowired默认会根据成员的属性名进行查找
+			// 解决二：使用@Qualifier(value="...") ,只能和@Autowired搭配使用
+
+		//优化点：@Autowired(required=true) + @Qualifier(value="") = @Resource(name="")
+
+		applicationContext.close();
 	}
 }
