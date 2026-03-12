@@ -13,6 +13,7 @@
 		<module>spring-ioc-xml-01</module>
 		<module>spring-practice</module>
 		<module>spring-ioc-annotation-03</module>
+		<module>spring-ioc-java-04</module>
 	</modules>
 
 	<dependencies>
@@ -35,6 +36,12 @@
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>6.0.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.2.27</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
