@@ -44,3 +44,6 @@ build/
 
 ### Log ###
 *.log
+
+### markdown图片 ###
+assets/
