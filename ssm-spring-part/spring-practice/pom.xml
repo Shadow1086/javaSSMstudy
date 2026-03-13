@@ -19,19 +19,6 @@
 			<version>9.5.0</version>
 		</dependency>
 		<!-- Source: https://mvnrepository.com/artifact/com.alibaba/druid -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.2.27</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!--	spring-jdbc	-->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>7.0.3</version>
-		</dependency>
 	</dependencies>
 
 	<properties>

@@ -37,6 +37,12 @@
 			<version>6.0.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!--	spring-jdbc	-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>7.0.3</version>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
