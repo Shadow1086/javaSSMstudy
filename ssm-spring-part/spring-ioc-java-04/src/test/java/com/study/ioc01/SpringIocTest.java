@@ -1,8 +1,13 @@
 package com.study.ioc01;
 
 import com.study.ioc01.config.JavaConfiguration;
+import com.study.practice.configuration.StudentConfiguration;
+import com.study.practice.controller.StudentController;
+import com.study.practice.models.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.List;
 
 /**
  * ClassName: Practice01
@@ -33,5 +38,13 @@ public class SpringIocTest {
 	public void test01(){
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("JavaConfigurationA.class");
 		applicationContext.close();
+	}
+
+	@Test
+	public void testForPractice(){
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(StudentConfiguration.class);
+		StudentController controller = context.getBean( StudentController.class);
+		controller.queryAll();
+		context.close();
 	}
 }
