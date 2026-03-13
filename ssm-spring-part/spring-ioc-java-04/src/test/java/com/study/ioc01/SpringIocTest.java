@@ -26,7 +26,12 @@ public class SpringIocTest {
 		 */
 
 		applicationContext.close();
-
 	}
 
+
+	@Test
+	public void test01(){
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("JavaConfigurationA.class");
+		applicationContext.close();
+	}
 }
