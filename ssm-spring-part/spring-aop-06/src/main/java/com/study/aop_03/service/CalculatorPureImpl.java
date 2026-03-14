@@ -1,4 +1,4 @@
-package com.study.aop_03;
+package com.study.aop_03.service;
 
 import com.study.aop_02.Calculator;
 import org.springframework.stereotype.Component;
