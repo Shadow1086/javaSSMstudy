@@ -1,6 +1,9 @@
 package com.study.aop_01;
 
+import com.study.aop_01.dyn.ProxyFactory;
 import com.study.aop_01.statics.StaticProxyCalculator;
+
+import java.lang.reflect.Proxy;
 
 /**
  * ClassName: Practice01
@@ -22,6 +25,12 @@ public class UseAop {
 		//调用
 		int add = proxy.add(1, 1);
 		System.out.println("add = " + add);
+
+		//jdk代理
+		ProxyFactory factory = new ProxyFactory(target);
+		//使用接口接值 = 代理对象
+		Calculator proxy1 = (Calculator)factory.getProxy();
+		proxy1.add(1,1);
 	}
 
 }
