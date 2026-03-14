@@ -45,6 +45,18 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>7.0.3</version>
 		</dependency>
+<!--		SpringAop-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>7.0.3</version>
+		</dependency>
+<!--		AspectJ 注解/织入支持-->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.22.1</version>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
