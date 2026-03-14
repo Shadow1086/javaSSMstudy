@@ -1,9 +1,6 @@
 package com.study.aop_03.advice;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,25 +12,25 @@ import org.springframework.stereotype.Component;
  *          1. 访问修饰符：public / private
  *          2. 方法的返回参数类型
  *              String int void
- *              如果不考虑访问修饰符和返回值，这两个整合成一起为：*
- *              如果要是不考虑，必须两个都不考虑，不能出现 * String
- *          3. 包的位置
- *              具体包：
- *              单层模糊：com.study.service.*  * 是单层模糊
- *              多层模糊：com..service.*         ..是任意层的模糊。但是..不能开头
- *          4. 类的名称：
- *              具体：CalculatorPureImpl
- *              模糊： *
- *              不分模糊：*Impl
- *          5. 方法名：语法和雷鸣一致
- *          6. 参数列表：
- *              没有参数：()
- *              有具体参数：(String) (String , int)
- *              模糊参数：(..) 有没有参数都行，有多个也行
- *              不分模糊：(String ..) String后面有没有参数无所谓，第一个是String就行
- *                      (..int)最后一个参数是int
- *                      (String .. int) 第一个是String,最后一个是int类型即可
- *
+ * 如果不考虑访问修饰符和返回值，这两个整合成一起为：*
+ * 如果要是不考虑，必须两个都不考虑，不能出现 * String
+ * 3. 包的位置
+ * 具体包：
+ * 单层模糊：com.study.service.*  * 是单层模糊
+ * 多层模糊：com..service.*         ..是任意层的模糊。但是..不能开头
+ * 4. 类的名称：
+ * 具体：CalculatorPureImpl
+ * 模糊： *
+ * 不分模糊：*Impl
+ * 5. 方法名：语法和雷鸣一致
+ * 6. 参数列表：
+ * 没有参数：()
+ * 有具体参数：(String) (String , int)
+ * 模糊参数：(..) 有没有参数都行，有多个也行
+ * 不分模糊：(String ..) String后面有没有参数无所谓，第一个是String就行
+ * (..int)最后一个参数是int
+ * (String .. int) 第一个是String,最后一个是int类型即可
+ * <p>
  *  TODO 实战
  *      1. 查询某包某类下，访问修饰符时公有，返回值是int的全部方法 "execution(public int com.study..*Impl.*(..))"
  *      2. 查询某包某类下，第一个参数是String的方法： "execution(* com.study.aop01.*(String..))"
@@ -46,17 +43,35 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogAdvice {
-	@Before("execution(* com.study.aop_02..*.*(..))")
+	/**
+	 * TODO 切点表达式的提取和复用：
+	 *  1. 当前类中提取：
+	 *      1.1 定义一个空方法
+	 *      1.2 添加注解@Pointcut("execution()")
+	 *      1.3 在增强注解中引用切点表达式的方法即可  直接调用方法名
+	 *  2. 创建一个存储切点的类，单独维护切点表达式
+	 *      2.1 其他类的切点方法。类的全限定符号.方法名()
+	 *
+	 *
+	 *
+	 *
+	 */
+	@Pointcut("execution(* com.study.aop_03.*.*(..))")
+	public void pc() {
+	}
+	//方法一：
+	@Before("pc()")
 	public void start() {
 		System.out.println("方法开始了");
 	}
 
-	@After("execution(* com.study.aop_02..*.*(..))")
+	//  方法二：
+	@After("com.study.aop_03.pointCut.MyPointCut.pc()")
 	public void after() {
 		System.out.println("方法结束了");
 	}
 
-	@AfterThrowing("execution(* com.study.aop_02..*.*(..))")
+	@AfterThrowing("pc()")
 	public void error() {
 		System.out.println("方法报错了");
 	}
