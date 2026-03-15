@@ -1,9 +1,10 @@
-package com.study.aop_04.advice;
+package com.study.aop_05.advice;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,16 +19,17 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect
+@Order(5)
 public class TxAdvice {
-	@Before("com.study.aop_04.pointCut.MyPointCut.pc()")
+	@Before("com.study.aop_05.pointCut.MyPointCut.pc()")
 	public void begin(){
 		System.out.println("开启事务");
 	}
-	@AfterReturning("com.study.aop_04.pointCut.MyPointCut.pc()")
+	@AfterReturning("com.study.aop_05.pointCut.MyPointCut.pc()")
 	public void commit(){
 		System.out.println("事务提交");
 	}
-	@AfterThrowing("com.study.aop_04.pointCut.MyPointCut.pc()")
+	@AfterThrowing("com.study.aop_05.pointCut.MyPointCut.pc()")
 	public void rollBack(){
 		System.out.println("事务回滚");
 	}

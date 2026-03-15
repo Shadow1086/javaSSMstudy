@@ -1,4 +1,4 @@
-package com.study.aop_04.pointCut;
+package com.study.aop_05.pointCut;
 
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,7 @@
-package com.study.aop_04.advice;
+package com.study.aop_05.advice;
 
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,12 +12,12 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Order(10)  // 指定一个优先级的值，值有效，优先级越高，越高的前置前执行，后置后执行
 public class LogAdvice {
 
 	@Pointcut("execution(* com.study.aop_03.*.*(..))")
 	public void pc() {
 	}
-
 	//方法一：
 	@Before("pc()")
 	public void start() {
