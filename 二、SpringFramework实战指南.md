@@ -3975,7 +3975,6 @@ d.  如果没有接口,类进行接值
 
 ```java
 Connection conn = ...;
-  
 try {
     // 开启事务：关闭事务的自动提交
     conn.setAutoCommit(false);
@@ -3983,17 +3982,12 @@ try {
     // 业务代码
     // 提交事务
     conn.commit();
-  
 }catch(Exception e){
-  
     // 回滚事务
     conn.rollBack();
-  
 }finally{
-  
     // 释放数据库连接
     conn.close();
-  
 }
 ```
 
@@ -4004,7 +3998,7 @@ try {
 
 #### 6.1.2 声明式事务
 
-声明式事务是指使用注解或 XML 配置的方式来控制事务的提交和回滚。
+**声明式事务**是指使用**注解**或 **XML 配置**的方式来**控制事务的提交和回滚**。
 
 开发者只需要添加配置即可， 具体事务的实现由第三方框架实现，避免我们直接进行事务操作！
 
@@ -4036,6 +4030,15 @@ try {
 
 ### 6.2 基于注解的声明式事务
 
+#### 步骤：
+
+1. 在配置文件/配置类中加入TransactionManager的获取
+   - 注意点：根据不同的框架选择不同的TransactionManager接口实现类
+     - jdbc,jdbcTempalte,mybatis ===>DataSourceTransactionManager
+     - Hibernate  ====> HibernateTransactionManager
+2. 在配置类上加上@EnableTransactionManager注解
+3. 在需要开启事务的方法/类上方加入注解：@Transcational注解
+
 #### 6.2.1 准备工作
 
 1.  准备项目
@@ -4046,75 +4049,63 @@ try {
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
-          <version>6.0.6</version>
       </dependency>
     
       <!--junit5测试-->
       <dependency>
           <groupId>org.junit.jupiter</groupId>
           <artifactId>junit-jupiter-api</artifactId>
-          <version>5.3.1</version>
       </dependency>
-
-
+    
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-test</artifactId>
-          <version>6.0.6</version>
           <scope>test</scope>
       </dependency>
     
       <dependency>
           <groupId>jakarta.annotation</groupId>
           <artifactId>jakarta.annotation-api</artifactId>
-          <version>2.1.1</version>
       </dependency>
     
       <!-- 数据库驱动 和 连接池-->
       <dependency>
           <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-          <version>8.0.25</version>
+          <artifactId>mysql-connector-j</artifactId>
       </dependency>
     
       <dependency>
           <groupId>com.alibaba</groupId>
           <artifactId>druid</artifactId>
-          <version>1.2.8</version>
       </dependency>
     
       <!-- spring-jdbc -->
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
-          <version>6.0.6</version>
       </dependency>
     
       <!-- 声明式事务依赖-->
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
-          <version>6.0.6</version>
       </dependency>
-
-
+    
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-aop</artifactId>
-          <version>6.0.6</version>
       </dependency>
     
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-aspects</artifactId>
-          <version>6.0.6</version>
       </dependency>
     </dependencies>
     ```
 2.  外部配置文件
 
     jdbc.properties
-    ```.properties
+    ```properties
     atguigu.url=jdbc:mysql://localhost:3306/studb
     atguigu.driver=com.mysql.cj.jdbc.Driver
     atguigu.username=root
@@ -4135,9 +4126,7 @@ try {
         private String username;
         @Value("${atguigu.password}")
         private String password;
-
-
-
+    
         //druid连接池
         @Bean
         public DataSource dataSource(){
@@ -4148,8 +4137,7 @@ try {
             dataSource.setPassword(password);
             return dataSource;
         }
-
-
+    
         @Bean
         //jdbcTemplate
         public JdbcTemplate jdbcTemplate(DataSource dataSource){
@@ -4157,9 +4145,7 @@ try {
             jdbcTemplate.setDataSource(dataSource);
             return jdbcTemplate;
         }
-    
     }
-    
     ```
 4.  准备dao/service层
 
@@ -4167,7 +4153,6 @@ try {
     ```java
     @Repository
     public class StudentDao {
-        
         @Autowired
         private JdbcTemplate jdbcTemplate;
         
@@ -4175,19 +4160,16 @@ try {
             String sql = "update students set name = ? where id = ? ;";
             int rows = jdbcTemplate.update(sql, name, id);
         }
-    
         public void updateAgeById(Integer age,Integer id){
             String sql = "update students set age = ? where id = ? ;";
             jdbcTemplate.update(sql,age,id);
         }
     }
-    
     ```
     service
     ```java
     @Service
     public class StudentService {
-        
         @Autowired
         private StudentDao studentDao;
         
@@ -4197,18 +4179,11 @@ try {
             studentDao.updateNameById("test1",1);
         }
     }
-    
     ```
 5.  测试环境搭建
     ```java
-    /**
-     * projectName: com.atguigu.test
-     *
-     * description:
-     */
     @SpringJUnitConfig(JavaConfig.class)
     public class TxTest {
-    
         @Autowired
         private StudentService studentService;
     
@@ -4217,7 +4192,6 @@ try {
             studentService.changeInfo();
         }
     }
-    
     ```
 
 #### 6.2.2 基本事务控制
@@ -4227,17 +4201,13 @@ try {
     数据库相关的配置
     ```java
     /**
-     * projectName: com.atguigu.config
-     *
      * description: 数据库和连接池配置类
      */
-    
     @Configuration
     @ComponenScan("com.atguigu")
     @PropertySource(value = "classpath:jdbc.properties")
     @EnableTransactionManagement
     public class DataSourceConfig {
-    
         /**
          * 实例化dataSource加入到ioc容器
          * @param url
@@ -4271,7 +4241,6 @@ try {
             jdbcTemplate.setDataSource(dataSource);
             return jdbcTemplate;
         }
-        
         /**
          * 装配事务管理实现对象
          * @param dataSource
@@ -4281,19 +4250,12 @@ try {
         public TransactionManager transactionManager(DataSource dataSource){
             return new DataSourceTransactionManager(dataSource);
         }
-    
     }
-    
     ```
 2.  使用声明事务注解@Transactional
     ```java
-    /**
-     * projectName: com.atguigu.service
-     *
-     */
     @Service
     public class StudentService {
-    
         @Autowired
         private StudentDao studentDao;
     
@@ -4305,19 +4267,12 @@ try {
             studentDao.updateNameById("test1",1);
         }
     }
-    
     ```
 3.  测试事务效果
     ```java
-    /**
-     * projectName: com.atguigu.test
-     *
-     * description:
-     */
     //@SpringJUnitConfig(locations = "classpath:application.xml")
     @SpringJUnitConfig(classes = DataSourceConfig.class)
     public class TxTest {
-    
         @Autowired
         private StudentService studentService;
     
@@ -4326,7 +4281,6 @@ try {
             studentService.changeInfo();
         }
     }
-    
     ```
 
 #### 6.2.3 事务属性：只读
@@ -4343,7 +4297,7 @@ try {
 
     会抛出下面异常：
 
-    Caused by: java.sql.SQLException: Connection is read-only. Queries leading to data modification are not allowed
+    `Caused by: java.sql.SQLException: Connection is read-only. Queries leading to data modification are not allowed`
 4.  @Transactional注解放在类上
     1.  生效原则
 
@@ -4359,19 +4313,16 @@ try {
     @Service
     @Transactional(readOnly = true)
     public class EmpService {
-        
         // 为了便于核对数据库操作结果，不要修改同一条记录
         @Transactional(readOnly = false)
         public void updateTwice(……) {
-        ……
+        	// ……
         }
-        
         // readOnly = true把当前事务设置为只读
         // @Transactional(readOnly = true)
         public String getEmpName(Integer empId) {
-        ……
+       		// ……
         }
-        
     }
     ```
 
@@ -4413,14 +4364,7 @@ try {
 
     执行抛出事务超时异常
     ```java
-    org.springframework.transaction.TransactionTimedOutException: Transaction timed out: deadline was Wed May 24 09:10:43 IRKT 2023
-    
-      at org.springframework.transaction.support.ResourceHolderSupport.checkTransactionTimeout(ResourceHolderSupport.java:155)
-      at org.springframework.transaction.support.ResourceHolderSupport.getTimeToLiveInMillis(ResourceHolderSupport.java:144)
-      at org.springframework.transaction.support.ResourceHolderSupport.getTimeToLiveInSeconds(ResourceHolderSupport.java:128)
-      at org.springframework.jdbc.datasource.DataSourceUtils.applyTimeout(DataSourceUtils.java:341)
-      at org.springframework.jdbc.core.JdbcTemplate.applyStatementSettings(JdbcTemplate.java:1467)
-    
+    org.springframework.transaction.TransactionTimedOutException: Transaction timed out
     ```
 
 #### 6.2.5 事务属性：事务异常
@@ -4506,29 +4450,12 @@ try {
         不同的隔离级别适用于不同的场景，需要根据实际业务需求进行选择和调整。
 2.  事务隔离级别设置
     ```java
-    package com.atguigu.service;
-    
-    import com.atguigu.dao.StudentDao;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.stereotype.Service;
-    import org.springframework.transaction.annotation.Isolation;
-    import org.springframework.transaction.annotation.Transactional;
-    
-    import java.io.FileInputStream;
-    import java.io.FileNotFoundException;
-    
-    /**
-     * projectName: com.atguigu.service
-     */
     @Service
     public class StudentService {
-    
         @Autowired
         private StudentDao studentDao;
     
         /**
-         * timeout设置事务超时时间,单位秒! 默认: -1 永不超时,不限制事务时间!
-         * rollbackFor = 指定哪些异常才会回滚,默认是 RuntimeException and Error 异常方可回滚!
          * noRollbackFor = 指定哪些异常不会回滚, 默认没有指定,如果指定,应该在rollbackFor的范围内!
          * isolation = 设置事务的隔离级别,mysql默认是repeatable read!
          */
@@ -4549,9 +4476,9 @@ try {
 
 #### 6.2.7 事务属性：事务传播行为
 
-1.  事务传播行为要研究的问题
+1.  事务传播行为要研究的问题：事务之间调用，如何影响子事务
 
-    ![](http://heavy_code_industry.gitee.io/code_heavy_industry/assets/img/img012.faac2cb7.png)
+    ![](https://cdn.jsdelivr.net/gh/Shadow1086/myPicture@master/uPic/2026/03/15/16-00-2X46Ge)
 
     举例代码：
     ```java
@@ -4586,16 +4513,8 @@ try {
         ```java
         @Service
         public class StudentService {
-        
             @Autowired
             private StudentDao studentDao;
-        
-            /**
-             * timeout设置事务超时时间,单位秒! 默认: -1 永不超时,不限制事务时间!
-             * rollbackFor = 指定哪些异常才会回滚,默认是 RuntimeException and Error 异常方可回滚!
-             * noRollbackFor = 指定哪些异常不会回滚, 默认没有指定,如果指定,应该在rollbackFor的范围内!
-             * isolation = 设置事务的隔离级别,mysql默认是repeatable read!
-             */
             @Transactional(readOnly = false,
                            timeout = 3,
                            rollbackFor = Exception.class,
@@ -4607,7 +4526,6 @@ try {
                 new FileInputStream("xxxx");
                 studentDao.updateNameById("test1",1);
             }
-            
         
             /**
              * 声明两个独立修改数据库的事务业务方法
@@ -4645,10 +4563,8 @@ try {
         ```java
         @SpringJUnitConfig(classes = AppConfig.class)
         public class TxTest {
-        
             @Autowired
             private StudentService studentService;
-        
             @Autowired
             private TopService topService;
         
@@ -4657,11 +4573,11 @@ try {
                 topService.topService();
             }
         }
-        
         ```
         **注意：**
-
-    在同一个类中，对于@Transactional注解的方法调用，事务传播行为不会生效。这是因为Spring框架中使用代理模式实现了事务机制，在同一个类中的方法调用并不经过代理，而是通过对象的方法调用，因此@Transactional注解的设置不会被代理捕获，也就不会产生任何事务传播行为的效果。
+        
+        ​	在同一个类中，对于@Transactional注解的方法调用，事务传播行为不会生效。这是因为Spring框架中使用代理模式实现了事务机制，在同一个类中的方法调用并不经过代理，而是通过对象的方法调用，因此@Transactional注解的设置不会被代理捕获，也就不会产生任何事务传播行为的效果。
+    
 4.  其他传播行为值（了解）
     1.  Propagation.REQUIRED：如果当前存在事务，则加入当前事务，否则创建一个新事务。
     2.  Propagation.REQUIRES\_NEW：创建一个新事务，并在新事务中执行。如果当前存在事务，则挂起当前事务，即使新事务抛出异常，也不会影响当前事务。
