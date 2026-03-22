@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+		xml 方法写sql 语句的，没有java代码
+		mybatis固定在特定的标签内写sql语句
+		mapper文件应该有约束
+-->
+<!-- namespace = mapper对应接口的全限定符-->
+<mapper namespace="com.study.mapper.EmployeeMapper">
+	<!-- 声明标签写sql语句
+			每个标签对应接口的一个方法，方法的一个实现
+			注意：mapper接口不能冲在，因为mapper.xml无法识别
+		-->
+	<select id="queryById" resultMap="com.study.pojo.Employee">
+		SELECT *
+		FROM mybatis_example.t_emp
+		WHERE emp_id = #{}
+	</select>
+
+
+</mapper>
