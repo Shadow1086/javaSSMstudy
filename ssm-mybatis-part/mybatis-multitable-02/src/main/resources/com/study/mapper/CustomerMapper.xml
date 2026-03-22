@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.mapper.CustomerMapper">
+	<resultMap id="customerMap" type="customer">
+		<id column="customer_id" property="customerId"/>
+		<result column="customer_name" property="customerName"/>
+		<!--	给集合属性赋值	-->
+		<collection property="orderList" ofType="order">
+			<id column="order_id" property="orderId"/>
+			<result column="order_name" property="orderName"/>
+			<result column="customer_id" property="customerId"/>
+			<!--	其中的customer对象就不需要进行赋值了		-->
+		</collection>
+
+	</resultMap>
+
+	<select id="queryOrderById" resultMap="customerMap">
+		SELECT *
+		FROM t_customer
+			     JOIN t_order ON t_order.customer_id = t_customer.customer_id
+		WHERE t_customer.customer_id = #{id}
+	</select>
+</mapper>
