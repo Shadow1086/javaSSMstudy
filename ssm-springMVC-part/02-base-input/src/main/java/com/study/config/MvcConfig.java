@@ -18,7 +18,7 @@ import java.util.Arrays;
  * {@code @Create} 2026-2026/4/22 20:39
  */
 @Configuration
-@ComponentScan("com.study.param")
+@ComponentScan("com.study")
 public class MvcConfig {
 	@Bean
 	public RequestMappingHandlerMapping handlerMapping(){
