@@ -1,4 +1,4 @@
-package com.study.config.com.study.jsp;
+package com.study.jsp;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
