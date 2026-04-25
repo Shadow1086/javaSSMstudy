@@ -1,0 +1,110 @@
+<mxfile host="Electron">
+  <diagram name="第 1 页" id="springmvc-flow-simple">
+    <mxGraphModel dx="1222" dy="912" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#f8fafc;strokeColor=#d0d7de;" value="" vertex="1">
+          <mxGeometry x="40" y="40" width="1760" height="980" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;" value="Spring MVC 请求处理流程" vertex="1">
+          <mxGeometry x="80" y="70" width="360" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#666666;" value="箭头只保留步骤编号，右侧统一写说明" vertex="1">
+          <mxGeometry x="80" y="110" width="280" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=18;" value="用户 / 浏览器" vertex="1">
+          <mxGeometry x="90" y="230" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="dispatcher" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;" value="&lt;div&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;DispatcherServlet&lt;/b&gt;&lt;/div&gt;&lt;div&gt;统一请求入口&lt;/div&gt;" vertex="1">
+          <mxGeometry x="360" y="220" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="mapping" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=16;" value="&lt;div&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;HandlerMapping&lt;/b&gt;&lt;/div&gt;&lt;div&gt;查找 handler 方法&lt;/div&gt;" vertex="1">
+          <mxGeometry x="700" y="220" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" value="&lt;div&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;HandlerAdapter&lt;/b&gt;&lt;/div&gt;&lt;div&gt;参数绑定 + 调用方法&lt;/div&gt;" vertex="1">
+          <mxGeometry x="360" y="450" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="controller" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;" value="&lt;div&gt;&lt;b&gt;UserController&lt;/b&gt;&lt;/div&gt;&lt;div&gt;login() / register()&lt;/div&gt;" vertex="1">
+          <mxGeometry x="700" y="450" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="service" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;" value="&lt;div&gt;&lt;b&gt;UserService&lt;/b&gt;&lt;/div&gt;&lt;div&gt;业务处理&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1000" y="450" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dao" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;" value="&lt;div&gt;&lt;b&gt;UserDao&lt;/b&gt;&lt;/div&gt;&lt;div&gt;数据访问&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1260" y="450" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="resolver" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;" value="&lt;div&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;ViewResolver&lt;/b&gt;&lt;/div&gt;&lt;div&gt;解析视图名&lt;/div&gt;&lt;div&gt;/web-info/html/ + .html&lt;/div&gt;" vertex="1">
+          <mxGeometry x="90" y="660" width="260" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="view" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=16;" value="&lt;div&gt;&lt;b&gt;视图页面&lt;/b&gt;&lt;/div&gt;&lt;div&gt;index.html&lt;/div&gt;&lt;div&gt;login.html&lt;/div&gt;" vertex="1">
+          <mxGeometry x="90" y="840" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="steps" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#ffffff;strokeColor=#c0c0c0;fontSize=14;align=left;spacingLeft=12;spacingTop=8;" value="&lt;div&gt;&lt;b&gt;步骤说明&lt;/b&gt;&lt;/div&gt;&lt;hr /&gt;&lt;div&gt;1. 用户发送请求给 DispatcherServlet&lt;/div&gt;&lt;div&gt;2. DispatcherServlet 调用 HandlerMapping&lt;/div&gt;&lt;div&gt;3. HandlerMapping 找到方法并返回给 DispatcherServlet&lt;/div&gt;&lt;div&gt;4. DispatcherServlet 调用 HandlerAdapter&lt;/div&gt;&lt;div&gt;5. HandlerAdapter 调用 Controller 方法&lt;/div&gt;&lt;div&gt;6. Controller 调用 Service&lt;/div&gt;&lt;div&gt;7. Service 调用 Dao&lt;/div&gt;&lt;div&gt;8. Controller 执行完成后返回 ModelAndView / 数据&lt;/div&gt;&lt;div&gt;9. HandlerAdapter 把结果返回给 DispatcherServlet&lt;/div&gt;&lt;div&gt;10. DispatcherServlet 调用 ViewResolver 解析视图名&lt;/div&gt;&lt;div&gt;11. ViewResolver 定位具体页面&lt;/div&gt;&lt;div&gt;12. DispatcherServlet 渲染完成后响应给用户&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1490" y="170" width="270" height="470" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" parent="1" source="user" target="dispatcher" value="1" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="255" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" parent="1" source="dispatcher" target="mapping" value="2" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" source="mapping" target="dispatcher" value="3" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="825" y="160" />
+              <mxPoint x="480" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" parent="1" source="dispatcher" target="adapter" value="4" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.35;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" source="adapter" target="controller" value="5" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" parent="1" source="controller" target="service" value="6" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" parent="1" source="service" target="dao" value="7" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" parent="1" source="controller" target="adapter" value="8" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="590" />
+              <mxPoint x="480" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" parent="1" source="adapter" target="dispatcher" value="9" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.72;exitY=0;exitDx=0;exitDy=0;entryX=0.72;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" parent="1" source="dispatcher" target="resolver" value="10" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.08;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="360" />
+              <mxPoint x="300" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" parent="1" source="resolver" target="view" value="11" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;exitX=0.4;exitY=1;exitDx=0;exitDy=0;entryX=0.4;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" parent="1" source="dispatcher" target="user" value="12" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=16;fontStyle=1;labelBackgroundColor=#ffffff;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="970" />
+              <mxPoint x="175" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
