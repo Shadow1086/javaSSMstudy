@@ -66,6 +66,20 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.21.1</version>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>9.1.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator-annotation-processor -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+			<version>9.1.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
   <build>
     <plugins>
