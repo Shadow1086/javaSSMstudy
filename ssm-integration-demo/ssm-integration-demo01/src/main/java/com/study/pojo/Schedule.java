@@ -1,5 +1,7 @@
 package com.study.pojo;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +14,16 @@ import java.util.Arrays;
  * Description:
  * <p>
  * {@code @Author} Liang-ht
- * {@code @Create} 2026-2026/4/25 20:36
+ * {@code @Create} 2026-2026/4/26 10:39
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
-	private Integer empId;
-	private String empName;
-	private double empSalary;
+public class Schedule {
+//	@NotNull
+	private Integer id;
+	@NotBlank
+	private String title;
+	@NotNull
+	private Integer completed;
 }
