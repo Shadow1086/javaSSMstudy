@@ -26,3 +26,19 @@ Thumbs.db
 
 ### Sensitive Config ###
 **/jdbc.properties
+**/db.properties
+**/database.properties
+**/.env
+**/.env.*
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+**/bootstrap-local.properties
+**/bootstrap-local.yml
+**/bootstrap-local.yaml
+**/*secret*.properties
+**/*secret*.yml
+**/*secret*.yaml
+**/*credentials*.properties
+**/*credentials*.yml
+**/*credentials*.yaml
