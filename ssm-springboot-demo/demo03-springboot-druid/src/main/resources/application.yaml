@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: demo03-springboot-druid
+
+  profiles:
+    active: mysql
+server:
+  port: 8080
+  servlet:
+    context-path: /
