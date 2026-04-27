@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: demo02-springboot-mvc
+  # 配置视图解析器的前后缀
+  mvc:
+    view:
+      prefix:
+      suffix:
+  web:
+    resources:
+      # 配置静态资源的位置，静态资源可以是css,js,图像等，默认下，静态资源放在classpath:/static目录下
+      # 一旦配置了，默认的静态资源文件夹就无法访问了，如：static,public,resource,META-INF/resources
+      # 外部要访问静态资源的时候，不需要写静态资源文件夹
+      static-locations:
+  http:
+    converters:
+      # 配置编码格式，关于HTTP请求和响应的字符编码
+      string-encoding-charset: utf-8
+# spring mvc 相关web配置
+server:
+  port: 8080
+  servlet:
+    context-path: /   # 设置项目的上下文
+
