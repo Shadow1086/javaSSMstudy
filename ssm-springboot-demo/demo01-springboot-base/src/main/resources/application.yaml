@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: demo01-springboot-base
+  # 决定使用哪个配置文件
+  profiles:
+    active: test,dev    # 激活外部的配置，外部配置的key和application的key重复，外部的覆盖内部
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 自定义配置
+zef:
+  user:
+    username: root
+    password: 123456
+    gfs:
+      - 高圆圆
+      - 范冰冰
+      - 二狗子
+#  info:
+#    age: 18   # key: 空格值
+#    name: 二狗子
+
