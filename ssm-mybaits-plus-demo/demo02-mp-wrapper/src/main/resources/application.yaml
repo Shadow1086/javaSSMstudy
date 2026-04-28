@@ -12,7 +12,7 @@ mybatis-plus:
   global-config:
     db-config:
       table-prefix: t_    # 表名前缀，不用在每个实体类上配置@Table_name了
-
+      id-type: assign_id    # 全局将主键设置为雪花算法策略
 server:
   port: 8080
   servlet:
