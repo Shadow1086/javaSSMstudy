@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo02-mp-wrapper
+  profiles:
+    active: mysql
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  type-aliases-package: com.study.pojo
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
