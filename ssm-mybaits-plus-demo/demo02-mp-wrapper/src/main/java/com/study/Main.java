@@ -2,6 +2,7 @@ package com.study;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -28,6 +29,8 @@ public class Main {
 
 		// 分页插件
 		PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
+		// 乐观锁插件
+		interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
 
 		interceptor.addInnerInterceptor(paginationInnerInterceptor);
 		return interceptor;
