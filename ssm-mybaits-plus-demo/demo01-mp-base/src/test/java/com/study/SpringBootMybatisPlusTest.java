@@ -1,5 +1,7 @@
 package com.study;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.study.mapper.ScheduleMapper;
 import com.study.pojo.Schedule;
 import org.junit.jupiter.api.Test;
@@ -69,5 +71,38 @@ public class SpringBootMybatisPlusTest {
 		ids.add(4L);
 		ids.add(2L);
 		System.out.println(mapper.selectByIds(ids));
+	}
+
+
+	@Test
+	public void testPagination() {
+		/// 放IPage接口 -> Page(页码，页容量)对象
+		Page<Schedule> page = new Page<>(1,3);
+		mapper.selectPage(page,null);
+
+		/// 结果  page最后也会被封装结果
+		long current = page.getCurrent();//页码
+		long size = page.getSize();     // 页容量
+		List<Schedule> records = page.getRecords();     // 当前页的数据
+		long total = page.getTotal();           // 总条数
+	}
+
+	@Test
+	public void testMyPagination() {
+		Page<Schedule> page = new Page<>(1,5);
+		mapper.queryByCompleted(page,1);
+
+		/// 结果  page最后也会被封装结果
+		long current = page.getCurrent();//页码
+		long size = page.getSize();     // 页容量
+		List<Schedule> records = page.getRecords();     // 当前页的数据
+		long total = page.getTotal();           // 总条数
+
+		System.out.println("total = " + total);
+		System.out.println("records = " + records);
+		System.out.println("size = " + size);
+		System.out.println("current = " + current);
+		System.out.println("page = " + page);
+
 	}
 }
