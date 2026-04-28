@@ -9,6 +9,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   type-aliases-package: com.study.pojo
   mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      table-prefix: t_    # 表名前缀，不用在每个实体类上配置@Table_name了
 
 server:
   port: 8080
