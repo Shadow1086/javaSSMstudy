@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: demo01-mp-base
+  profiles:
+    active: mysql
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# mybatis 配置：彻底抛弃mybatis-config.xml文件
+# mapperxml文件的位置，settings的配置，别名的配置
+mybatis-plus:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.study.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
